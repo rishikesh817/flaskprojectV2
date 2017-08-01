@@ -3,20 +3,22 @@
 
 {% block content %}
     <h1>Hi, {{ user.nickname }}!</h1>
+    {% if posts %}
     {% for post in posts %}
     <p>
       {{ post.author.nickname }} is <b>{{ post.age }}</b> years old. 
     </p>
     {% endfor %}
+    {% endif %}
     <ul>
     {% for user in user_list %}
-    <li>{{user.id}}: {{user.nickname}}, {{user.email}}</li>
+    <li>{{user.id}}: {{user.nickname}}, {{user.age}}</li>
     {% endfor %}
     </ul>
     Add a new age!
 
     
-	<form action="Microblog/app/views.py" id = "getvals">
+	<form action="/submit" method="GET">
 	  Name:<br>
 	  <input type="text" name="name" >
 	  <br>

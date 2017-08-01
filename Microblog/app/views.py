@@ -21,31 +21,11 @@ def before_request():
 def index():
     user = g.user
     user_list = db_session.query(User).all()
-    posts = [
-        {
-            'author': {'nickname': 'John'},
-            'age': '11'
-        },
-        {
-            'author': {'nickname': 'Susan'},
-            'age': '14'
-        },
-        {
 
-            'author': {'nickname': 'Rishikesh'},
-            'age': '16'
-
-
-        },
-        {
-            'author': {'nickname': 'Sid'},
-            'age': '4'
-        }
-    ]
     return render_template('index.html',
                            title='Home',
                            user=user,
-                           posts=posts,
+                           #posts=posts,
                            user_list=user_list)
 
 def addUser(author, age):
@@ -55,6 +35,11 @@ def addUser(author, age):
         }
 
 
+@app.route('/submit',methods=['GET'])
+def processEntry():
+    print request.form["name"]
+    print request.form["age"]
+    return "Received "+request.form["name"]+" "+request.form["age"]
 
 @app.route('/login', methods=['GET', 'POST'])
 @oid.loginhandler
