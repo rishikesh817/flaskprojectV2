@@ -1,0 +1,29 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hi, {{ user.nickname }}!</h1>
+    {% for post in posts %}
+    <p>
+      {{ post.author.nickname }} is <b>{{ post.age }}</b> years old. 
+    </p>
+    {% endfor %}
+    Add a new age!
+
+    
+	<form action="Microblog/app/views.py" id = "getvals">
+	  Name:<br>
+	  <input type="text" name="name" >
+	  <br>
+	   Age<br>
+	  <input type="text" name="Age"">
+	  <br><br>
+	  <input type="submit" value="Submit">
+	</form> 
+	
+
+{% endblock %}
+
+
+
+
