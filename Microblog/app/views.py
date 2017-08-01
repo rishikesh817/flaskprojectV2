@@ -20,6 +20,7 @@ def before_request():
 @login_required
 def index():
     user = g.user
+    print (User.query.fetchAll())
     posts = [
         {
             'author': {'nickname': 'John'},
@@ -97,5 +98,4 @@ def logout():
 
 
 
-request.form.get("getvalsx")
 
