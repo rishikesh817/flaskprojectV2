@@ -8,6 +8,11 @@
       {{ post.author.nickname }} is <b>{{ post.age }}</b> years old. 
     </p>
     {% endfor %}
+    <ul>
+    {% for user in user_list %}
+    <li>{{user.id}}: {{user.nickname}}, {{user.email}}</li>
+    {% endfor %}
+    </ul>
     Add a new age!
 
     

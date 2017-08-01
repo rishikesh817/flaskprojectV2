@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask_login import login_user, logout_user, current_user, login_required
-from app import app, db, lm, oid
+from app import app, db, lm, oid,db_session
 from .forms import LoginForm
-from .models import User
+from .models import User,Post
 
 
 @lm.user_loader
@@ -20,7 +20,7 @@ def before_request():
 @login_required
 def index():
     user = g.user
-    print (User.query.fetchAll())
+    user_list = db_session.query(User).all()
     posts = [
         {
             'author': {'nickname': 'John'},
@@ -45,7 +45,8 @@ def index():
     return render_template('index.html',
                            title='Home',
                            user=user,
-                           posts=posts)
+                           posts=posts,
+                           user_list=user_list)
 
 def addUser(author, age):
     posts = posts +  {
